@@ -21,7 +21,7 @@ output_vars = ["Var_IMC_0_3", "Var_IMC_3_6", "Var_IMC_6_12",
                "Var_IMC_12_24", "Var_IMC_24_36", "Var_IMC_36_48", "Var_IMC_48_60"]
 
 app = Flask(__name__)
-CORS(app)  # permite chamadas de outros domínios
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 def prever_imc_hibrido_mlp(modelos, paciente_serie, scaler_X, scaler_y, conhecidos=None):
     
