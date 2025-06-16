@@ -1,5 +1,6 @@
 # app.py
 import pandas as pd
+import os
 from flask import Flask, request, jsonify
 from joblib import load
 from flask_cors import CORS
@@ -75,6 +76,6 @@ def predict():
         traceback.print_exc()  # <<< imprime o erro completo no terminal
         return jsonify({"success": False, "erro": str(e)}), 500
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render define PORT automaticamente
+    app.run(host="0.0.0.0", port=port, debug=True)
